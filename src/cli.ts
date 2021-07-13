@@ -45,7 +45,7 @@ try {
   map.forEach((row) => {
     row!.forEach((height) => {
       const idx = index << 2;
-      const color = lightest + height! / deltaHeights * deltaColor;
+      const color = lightest + (height! - min!) / deltaHeights * deltaColor;
       png.data[idx] = color;
       png.data[idx + 1] = color;
       png.data[idx + 2] = color;
