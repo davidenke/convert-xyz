@@ -1,5 +1,11 @@
 {
   "name": "convert-xyz",
+  "description": "Convert XYZ heightmaps to PNG",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": "David Enke<david@enke.dev>",
+  "repository": "git@github.com:davidenke/convert-xyz.git",
+  "bin": "dist/cli.js",
   "scripts": {
     "build": "tsc --project tsconfig.json",
     "start": "ts-node --project tsconfig.json --files src/cli.ts"
