@@ -14,7 +14,7 @@ let max: Height | undefined = undefined;
 const map = new Map<Lng, Map<Lat, Height>>();
 
 try {
-  console.info(`Parsing file ${source}...`);
+  console.info(`Parsing file ...${source.substr(-40)}`);
   readFileSync(source)
     .toString()
     .split('\n')
@@ -28,12 +28,12 @@ try {
       return [lng, lat, height];
     });
 } catch (error) {
-  console.error(`File ${source} could not be parsed.`);
+  console.error(`File ${source.substr(-40)} could not be parsed.`);
   process.exit(1);
 }
 
 try {
-  console.info(`Writing file ${target}...`);
+  console.info(`Writing file ...${target.substr(-40)}`);
 
   const png = new PNG({height: map.size, width: map.size});
   const lightest = 0;
@@ -55,6 +55,14 @@ try {
   });
 
   png.pack().pipe(createWriteStream(target));
+
+  console.log(`
+  Wrote to target ...${target.substr(-26)}
+  ---------------------------------------------
+  Min height ${min}
+  Max height ${max}
+  Delta ${deltaHeights}
+  `);
 } catch (error) {
   console.error(`File ${target} could not be written.`);
   process.exit(2);
